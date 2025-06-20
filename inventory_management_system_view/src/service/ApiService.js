@@ -112,7 +112,6 @@ export default class ApiService {
 
     /** PRODUCT ENDPOINTS */
     static async addProduct(formData) {
-
         const response = await axios.post(`${this.BASE_URL}/products/add`, formData, {
             headers : {
                 ...this.getHeader(),
@@ -130,7 +129,7 @@ export default class ApiService {
         return response.data;
     }
 
-    static async getProductById (productId) {
+    static async getProductById(productId) {
         const response = await axios.get(`${this.BASE_URL}/products/${productId}`, {
             headers : this.getHeader()
         });
@@ -138,7 +137,6 @@ export default class ApiService {
     }
 
     static async updateProduct(formData) {
-        
         const response = await axios.put(`${this.BASE_URL}/products/update`, formData, {
             headers : {
                 ...this.getHeader(),
@@ -150,7 +148,6 @@ export default class ApiService {
     }
 
     static async deleteProduct(productId) {
-        
         const response = await axios.delete(`${this.BASE_URL}/products/delete/${productId}`, {
             headers : this.getHeader()
         });
@@ -162,6 +159,49 @@ export default class ApiService {
         const response = await axios.get(`${this.BASE_URL}/products/search`, {
             params : {searchValue}
         });
+        return response.data;
+    }
+
+    /** CATEGORY ENDPOINTS */
+    static async createCategory(categoryData) {
+        const response = await axios.post(`${this.BASE_URL}/categories/add`, categoryData, {
+            headers : {
+                ...this.getHeader()
+            }
+        });
+
+        return response.data;
+    }
+
+    static async getAllCategories() {
+        const response = await axios.get(`${this.BASE_URL}/categories/all`, {
+            headers : this.getHeader()
+        });
+        return response.data;
+    }
+
+    static async getCategoryById(categoryId) {
+        const response = await axios.get(`${this.BASE_URL}/categories/${categoryId}`, {
+            headers : this.getHeader()
+        });
+        return response.data;
+    }
+
+    static async updateCategory(categoryId, formData) {
+        const response = await axios.put(`${this.BASE_URL}/categories/update/${categoryId}`, formData, {
+            headers : {
+                ...this.getHeader(),
+            }
+        });
+
+        return response.data;
+    }
+
+    static async deleteCategory(categoryId) {
+        const response = await axios.delete(`${this.BASE_URL}/categories/delete/${categoryId}`, {
+            headers : this.getHeader()
+        });
+
         return response.data;
     }
 
