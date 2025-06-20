@@ -1,10 +1,10 @@
-import React, {Component} from "react";
-import { Navigate, userLocation} from "react-router-dom";
+import React from "react";
+import { Navigate, useLocation} from "react-router-dom";
 import ApiService from "./ApiService";
 
 // used to protect our authenticated route
 export const ProtectedRoute =({element:Component}) => {
-    const location = userLocation();
+    const location = useLocation();
     return ApiService.isAuthenticated() ?  (
         Component
     ) : (
@@ -14,7 +14,7 @@ export const ProtectedRoute =({element:Component}) => {
 
 // used to protect our Admin route
 export const AdminRoute =({element:Component}) => {
-    const location = userLocation();
+    const location = useLocation();
     return ApiService.isAdmin() ?  (
         Component
     ) : (
