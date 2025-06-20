@@ -136,8 +136,8 @@ export default class ApiService {
         return response.data;
     }
 
-    static async updateProduct(formData) {
-        const response = await axios.put(`${this.BASE_URL}/products/update`, formData, {
+    static async updateProduct(productData) {
+        const response = await axios.put(`${this.BASE_URL}/products/update`, productData, {
             headers : {
                 ...this.getHeader(),
                 "Content-type" : "multipart/form-data"
@@ -189,8 +189,8 @@ export default class ApiService {
         return response.data;
     }
 
-    static async updateCategory(categoryId, formData) {
-        const response = await axios.put(`${this.BASE_URL}/categories/update/${categoryId}`, formData, {
+    static async updateCategory(categoryId, categoryData) {
+        const response = await axios.put(`${this.BASE_URL}/categories/update/${categoryId}`, categoryData, {
             headers : {
                 ...this.getHeader(),
             }
@@ -201,7 +201,7 @@ export default class ApiService {
 
     static async deleteCategory(categoryId) {
         const response = await axios.delete(`${this.BASE_URL}/categories/delete/${categoryId}`, {
-            headers : this.getHeader()
+            headers: this.getHeader()
         });
 
         return response.data;
@@ -212,7 +212,7 @@ export default class ApiService {
     /** SUPPLIER ENDPOINTS */
     static async addSupplier(supplierData) {
         const response = await axios.post(`${this.BASE_URL}/suppliers/add`, supplierData, {
-            headers : {
+            headers: {
                 ...this.getHeader()
             }
         });
@@ -222,21 +222,23 @@ export default class ApiService {
 
     static async getAllSuppliers() {
         const response = await axios.get(`${this.BASE_URL}/suppliers/all`, {
-            headers : this.getHeader()
+            headers: this.getHeader()
         });
+
         return response.data;
     }
 
     static async getSupplierById(supplierId) {
         const response = await axios.get(`${this.BASE_URL}/suppliers/${supplierId}`, {
-            headers : this.getHeader()
+            headers: this.getHeader()
         });
+
         return response.data;
     }
 
-    static async updateCategory(supplierId, formData) {
-        const response = await axios.put(`${this.BASE_URL}/suppliers/update/${supplierId}`, formData, {
-            headers : {
+    static async updateCategory(supplierId, supplierData) {
+        const response = await axios.put(`${this.BASE_URL}/suppliers/update/${supplierId}`, supplierData, {
+            headers: {
                 ...this.getHeader(),
             }
         });
@@ -246,10 +248,97 @@ export default class ApiService {
 
     static async deleteCategory(supplierId) {
         const response = await axios.delete(`${this.BASE_URL}/suppliers/delete/${supplierId}`, {
-            headers : this.getHeader()
+            headers: this.getHeader()
         });
 
         return response.data;
+    }
+
+    //============================================================================================
+
+    /** TRANSACTIONS ENDPOINTS */
+    static async purchaseProduct(body) {
+        const response = await axios.post(`${this.BASE_URL}/transactions/purchase`, body, {
+            headers: {
+                ...this.getHeader()
+            }
+        });
+
+        return response.data;
+    }
+
+    static async sellProduct(body) {
+        const response = await axios.post(`${this.BASE_URL}/transactions/sell`, body, {
+            headers: {
+                ...this.getHeader()
+            }
+        });
+
+        return response.data;
+    }
+
+    static async returnProduct(body) {
+        const response = await axios.post(`${this.BASE_URL}/transactions/return`, body, {
+            headers: {
+                ...this.getHeader()
+            }
+        });
+
+        return response.data;
+    }
+
+    static async getAllTransactions(filter) {
+        const response = await axios.get(`${this.BASE_URL}/transactions/all`, {
+            headers: this.getHeader(),
+            params: {filter}
+        });
+
+        return response.data;
+    }
+
+    static async getTransactionById(transactionId) {
+        const response = await axios.get(`${this.BASE_URL}/transactions/${transactionId}`, {
+            headers: this.getHeader()
+        });
+
+        return response.data;
+    }
+
+    static async getTransactionByMonthAndYear(month, year) {
+        const response = await axios.get(`${this.BASE_URL}/transactions/by-month-year`, {
+            headers: this.getHeader(),
+            params: {
+                month: month,
+                year: year
+            }
+        });
+
+        return response.data;
+    }
+
+    static async updateTransactionStatus(transactionId, status) {
+        const response = await axios.put(`${this.BASE_URL}/transactions/${transactionId}`, status, {
+            headers: {
+                ...this.getHeader()
+            }
+        });
+
+        return response.data;
+    }
+
+    /** AUTHENTICATION CHECKER */
+    static logout() {
+        this.clearAuth();
+    }
+
+    static isAuthenticated() {
+        const token = this.getToken();
+        return !!token;
+    }
+
+    static isAdmin() { //ADMIN USER
+        const role = this.getRole();
+        return !!role;
     }
 
 }
