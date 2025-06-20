@@ -162,6 +162,8 @@ export default class ApiService {
         return response.data;
     }
 
+    //============================================================================================
+
     /** CATEGORY ENDPOINTS */
     static async createCategory(categoryData) {
         const response = await axios.post(`${this.BASE_URL}/categories/add`, categoryData, {
@@ -199,6 +201,51 @@ export default class ApiService {
 
     static async deleteCategory(categoryId) {
         const response = await axios.delete(`${this.BASE_URL}/categories/delete/${categoryId}`, {
+            headers : this.getHeader()
+        });
+
+        return response.data;
+    }
+
+    //============================================================================================
+
+    /** SUPPLIER ENDPOINTS */
+    static async addSupplier(supplierData) {
+        const response = await axios.post(`${this.BASE_URL}/suppliers/add`, supplierData, {
+            headers : {
+                ...this.getHeader()
+            }
+        });
+
+        return response.data;
+    }
+
+    static async getAllSuppliers() {
+        const response = await axios.get(`${this.BASE_URL}/suppliers/all`, {
+            headers : this.getHeader()
+        });
+        return response.data;
+    }
+
+    static async getSupplierById(supplierId) {
+        const response = await axios.get(`${this.BASE_URL}/suppliers/${supplierId}`, {
+            headers : this.getHeader()
+        });
+        return response.data;
+    }
+
+    static async updateCategory(supplierId, formData) {
+        const response = await axios.put(`${this.BASE_URL}/suppliers/update/${supplierId}`, formData, {
+            headers : {
+                ...this.getHeader(),
+            }
+        });
+
+        return response.data;
+    }
+
+    static async deleteCategory(supplierId) {
+        const response = await axios.delete(`${this.BASE_URL}/suppliers/delete/${supplierId}`, {
             headers : this.getHeader()
         });
 
