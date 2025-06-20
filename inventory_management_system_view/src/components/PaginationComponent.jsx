@@ -29,5 +29,7 @@ const PaginationComponent = ({currentPage, totalPages, onPageChange}) => {
                 Next &raquo;
             </button>
         </div>
-    )
-}
+    );
+};
+
+export default PaginationComponent;
