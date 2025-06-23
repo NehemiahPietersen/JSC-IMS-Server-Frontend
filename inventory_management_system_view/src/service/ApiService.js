@@ -3,7 +3,7 @@ import CryptoJS from "crypto-js";
 
 export default class ApiService {
     
-    static BASE_URL = "https://localhost:5050/api/";
+    static BASE_URL = "http://127.0.0.1:5050/api";
     static ENCRYPTION_KEY = "jsc-inv-mgt-sys";
 
     //encrypt data using cryptoJS
@@ -17,12 +17,6 @@ export default class ApiService {
         return bytes.toString(CryptoJS.enc.Utf8); //convert what has been decrypted to original string
     }
 
-    //save token with Encryption
-    static saveToken(token) {
-        const encryptedToken = this.encrypt(token);
-        localStorage.setItem("token", encryptedToken);
-    }
-    
     //save token with Encryption
     static saveToken(token) {
         const encryptedToken = this.encrypt(token);
@@ -43,7 +37,7 @@ export default class ApiService {
     }
 
     //retrieve role
-    static getToken() {
+    static getRole() {
         const encryptedRole = localStorage.getItem("role");
         if(!encryptedRole) return null;
         return this.decrypt(encryptedRole);
@@ -60,7 +54,7 @@ export default class ApiService {
         const token = this.getToken();
         return {
             Authorization : `${token}` ,
-            "Content-type" : "application/json"
+            "Content-Type" : "application/json"
         }
     }
     
@@ -236,7 +230,7 @@ export default class ApiService {
         return response.data;
     }
 
-    static async updateCategory(supplierId, supplierData) {
+    static async updateSupplier(supplierId, supplierData) {
         const response = await axios.put(`${this.BASE_URL}/suppliers/update/${supplierId}`, supplierData, {
             headers: {
                 ...this.getHeader(),
@@ -246,7 +240,7 @@ export default class ApiService {
         return response.data;
     }
 
-    static async deleteCategory(supplierId) {
+    static async deleteSupplier(supplierId) {
         const response = await axios.delete(`${this.BASE_URL}/suppliers/delete/${supplierId}`, {
             headers: this.getHeader()
         });
