@@ -98,6 +98,7 @@ const CategoryPage = () => {
                     <h1>Categories</h1>
                     <div className="add-cat">
                         <input type="text"
+                        value={categoryName}
                         placeholder="Category Name"
                         onChange={(e) => setCategoryName(e.target.value)}
                         />
