@@ -14,7 +14,8 @@ const LoginPage = () => {
         try {
             const loginData = { email, password };
             const res = await ApiService.loginUser(loginData);
-            console.log(res);
+            
+            console.log(res); //todo delete
 
             if(res.status === 200) {
                 ApiService.saveToken(res.token);

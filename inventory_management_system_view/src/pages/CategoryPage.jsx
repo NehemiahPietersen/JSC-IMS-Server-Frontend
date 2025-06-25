@@ -32,7 +32,7 @@ const CategoryPage = () => {
             };
         };
 
-        getCategories();
+        getCategories(); //invoke getSuppliers to display suppliers
     }, []);
 
     //add category

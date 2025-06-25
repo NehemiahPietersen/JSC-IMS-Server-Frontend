@@ -15,32 +15,35 @@ const SideBar  = () => {
             <h1 className="ims">JSC</h1>
             <ul className="nav-links">
                 {isAuth && (
-                    <li><link to="/dashboard">Dashboard</link></li>
-                )}
+                    <li>
+                        <Link to="/dashboard">Dashboard</Link>
+                    </li>
+                )};
+
                 {isAdmin && (
-                    <li><link to="/transactions">Transactions</link></li>
+                    <li><Link to="/transactions">Transactions</Link></li>
                 )}
                 {isAdmin && ( 
-                    <li><link to="/category">Category</link></li>
+                    <li><Link to="/category">Category</Link></li>
                 )}
                 {isAdmin && ( 
-                    <li><link to="/supplier">Supplier</link></li>
+                    <li><Link to="/supplier">Supplier</Link></li>
                 )}
                 {isAdmin && ( 
-                    <li><link to="/product">Product</link></li>
+                    <li><Link to="/product">Product</Link></li>
                 )}
                 {isAuth && ( 
-                    <li><link to="/purchase">Purchase</link></li>
+                    <li><Link to="/purchase">Purchase</Link></li>
                 )}
                 {isAuth && ( 
-                    <li><link to="/sell">Sell</link></li>
+                    <li><Link to="/sell">Sell</Link></li>
                 )}
                 {isAuth && ( 
-                    <li><link to="/profile">Profile</link></li>
+                    <li><Link to="/profile">Profile</Link></li>
                 )}
                 
                 {isAuth && ( 
-                    <li><link onClick={logout} to="/login">Logout</link></li>
+                    <li><Link onClick={logout} to="/login">Logout</Link></li>
                 )}
             </ul>
         </div>
