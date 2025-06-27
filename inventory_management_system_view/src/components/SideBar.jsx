@@ -18,8 +18,7 @@ const SideBar  = () => {
                     <li>
                         <Link to="/dashboard">Dashboard</Link>
                     </li>
-                )};
-
+                )}
                 {isAdmin && (
                     <li><Link to="/transactions">Transactions</Link></li>
                 )}
