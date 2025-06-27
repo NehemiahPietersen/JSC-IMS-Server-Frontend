@@ -35,7 +35,7 @@ const CategoryPage = () => {
     }, []);
 
     // Add category
-    const addCategory = async() => {
+    const handleAddCategory = async() => {
         if(!categoryName) {
             showMessage("Category name is needed");
             return;
@@ -90,44 +90,38 @@ const CategoryPage = () => {
         }
     }
 
-    return(
-        <Layout page={
+    return (
+        <Layout>
             <div className="category-page">
                 {message && <div className="message">{message}</div>}
+                
                 <div className="category-header">
                     <h1>Categories</h1>
                     <div className="add-cat">
-                        <input 
+                        <input
                             type="text"
                             value={categoryName}
-                            placeholder="Category Name"
                             onChange={(e) => setCategoryName(e.target.value)}
+                            placeholder="Enter category name"
                         />
-
-                        {!isEditing ? (
-                            <button type="button" onClick={addCategory}>Add Category</button>
-                        ) : (
-                            <button type="button" onClick={editCategory}>Update Category</button>
-                        )}
+                        <button onClick={handleAddCategory}>Add Category</button>
                     </div>
                 </div>
 
-                {categories.length > 0 && (
-                    <ul className="category-list">
-                        {categories.map((category) => (
-                            <li className="category-item" key={category.id}>
-                                <span>{category.name}</span>
-                                <div className="category-actions">
-                                    <button onClick={() => handleEditCategory(category)}>Edit</button>
-                                    <button onClick={() => handleDeleteCategory(category.id)}>Delete</button>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                <ul className="category-list">
+                    {categories.map((category) => (
+                        <li key={category.id} className="category-item">
+                            <span>{category.name}</span>
+                            <div className="category-actions">
+                                <button onClick={() => handleEditCategory(category)}>Edit</button>
+                                <button onClick={() => handleDeleteCategory(category.id)}>Delete</button>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
             </div>
-        } />
-    )
+        </Layout>
+    );
 }
 
 export default CategoryPage;

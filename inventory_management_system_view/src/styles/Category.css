@@ -1,0 +1,183 @@
+/* CategoryPage.css */
+.category-page {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.main-content {
+    overflow: visible; /* Ensure this isn't set to hidden */
+}
+
+.message {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 500;
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border-left: 4px solid #1976d2;
+}
+
+.category-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.category-header h1 {
+    font-size: 2rem;
+    color: #333;
+    margin: 0;
+}
+
+.add-cat {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.add-cat input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.add-cat input:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+.add-cat button {
+    padding: 0.75rem 1.5rem;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-cat button:hover {
+    background-color: #1565c0;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.category-item span {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.category-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.category-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.category-actions button:first-child {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.category-actions button:first-child:hover {
+    background-color: #ffb300;
+}
+
+.category-actions button:last-child {
+    background-color: #f44336;
+    color: white;
+}
+
+.category-actions button:last-child:hover {
+    background-color: #d32f2f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .category-page {
+        padding: 1rem;
+    }
+    
+    .add-cat {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .category-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .category-actions {
+        align-self: flex-end;
+    }
+}
+
+.category-page {
+    padding: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Ensure proper spacing with the sidebar */
+@media (min-width: 769px) {
+    .category-page {
+        margin-left: 250px; /* Match sidebar width */
+        width: calc(100% - 250px);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .category-page {
+        padding: 1rem;
+        margin-left: 0;
+        width: 100%;
+    }
+}
