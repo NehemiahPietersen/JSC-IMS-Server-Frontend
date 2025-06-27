@@ -350,12 +350,26 @@ export default class ApiService {
         return response.data;
     }
 
-    static async getAllSuppliers() {
-        const response = await axios.get(`${this.BASE_URL}/suppliers/all`, {
-            headers: this.getHeader()
-        });
+    // static async getAllSuppliers() {
+    //     const response = await axios.get(`${this.BASE_URL}/suppliers/all`, {
+    //         headers: this.getHeader()
+    //     });
 
-        return response.data;
+    //     return response.data;
+    // }
+
+    static async getAllSuppliers() {
+        try {
+            console.log("Making request to /suppliers/all");
+            const response = await axios.get(`${this.BASE_URL}/suppliers/all`, {
+                headers: this.getHeader()
+            });
+            console.log("Suppliers API Response:", response);
+            return response.data;
+        } catch (error) {
+            console.error("Error in getAllSuppliers:", error);
+            throw error;
+        }
     }
 
     static async getSupplierById(supplierId) {
