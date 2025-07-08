@@ -19,7 +19,7 @@ const PaginationComponent = ({currentPage, totalPages, onPageChange}) => {
                 onClick={() => onPageChange(number)}>
                     {number}
                 </button>
-            ))};
+            ))}
 
             {/* NEXT BUTTON */}
             <button className="pagination-button"

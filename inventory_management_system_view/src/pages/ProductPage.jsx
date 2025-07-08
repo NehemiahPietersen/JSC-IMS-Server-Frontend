@@ -14,7 +14,7 @@ const ProductPage = () => {
     //Pagination component
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ totalPages, setTotalPages ] = useState(0);
-    const itemsPerPage = 5;
+    const itemsPerPage = 12;
 
     const showMessage =(msg) => {
         setMessage(msg);
@@ -78,18 +78,11 @@ const ProductPage = () => {
                 <div className="product-list">
                     {products.map((product) => (
                         <div key={product.id} className="product-item">
-                            {/* Temporary placeholder image */}
-                            <div style={{
-                                width: '100%',
-                                height: '200px',
-                                backgroundColor: '#eee',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                marginBottom: '15px'
-                            }}>
-                                [Product Image]
-                            </div>
+                            <img
+                            className="product-image"
+                            src={product.imageUrl}
+                            alt={product.name}
+                            />
                             
                             <div className="product-info">
                                 <h3 className="name">{product.name}</h3>
