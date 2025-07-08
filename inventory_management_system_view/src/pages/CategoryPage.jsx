@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Layout from "../components/Layout";
 import ApiService from "../service/ApiService";
 
@@ -17,7 +17,7 @@ const CategoryPage = () => {
     }
 
     // Fetch categories
-    const fetchCategories = async () => {
+    const fetchCategories = useCallback(async () => {
         try {
             const res = await ApiService.getAllCategories();
             if(res.data.status === 200) {
@@ -28,45 +28,41 @@ const CategoryPage = () => {
                 error.response?.data?.message || "Error loading categories: " + error
             );
         }
-    };
+    }, []);
 
     useEffect(() => {
         fetchCategories();
-    }, []);
+    }, [fetchCategories]);
 
-    // Add category
-    const handleAddCategory = async() => {
+    // Handle form submission (both add and edit)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
         if(!categoryName) {
             showMessage("Category name is needed");
             return;
         }
 
         try {
-            await ApiService.createCategory({name: categoryName});
-            showMessage("Category successfully added");
+            if(isEditing) {
+                await ApiService.updateCategory(editingCategoryId, {name: categoryName});
+                showMessage("Category successfully updated");
+            } else {
+                await ApiService.createCategory({name: categoryName});
+                showMessage("Category successfully added");
+            }
+            
             setCategoryName("");
-            fetchCategories(); // Refresh the list
+            setIsEditing(false);
+            setEditingCategoryId(null);
+            fetchCategories();
         } catch (error) {
             showMessage(
-                error.response?.data?.message || "Error adding category: " + error
+                error.response?.data?.message || 
+                `Error ${isEditing ? 'updating' : 'adding'} category: ` + error
             );
         }
     };
-
-    // Edit category
-    const editCategory = async() => {
-        try {
-            await ApiService.updateCategory(editingCategoryId, {name: categoryName});
-            showMessage("Category successfully updated");
-            setIsEditing(false);
-            setCategoryName("");
-            fetchCategories(); // Refresh the list
-        } catch (error) {
-            showMessage(
-                error.response?.data?.message || "Error editing category: " + error
-            );
-        }
-    }
 
     // Handle edit button
     const handleEditCategory = (category) => {
@@ -81,7 +77,7 @@ const CategoryPage = () => {
             try {
                 await ApiService.deleteCategory(categoryId);
                 showMessage("Category successfully deleted");
-                fetchCategories(); // Refresh the list
+                fetchCategories();
             } catch (error) {
                 showMessage(
                     error.response?.data?.message || "Error deleting category: " + error
@@ -97,15 +93,30 @@ const CategoryPage = () => {
                 
                 <div className="category-header">
                     <h1>Categories</h1>
-                    <div className="add-cat">
+                    <form className="add-cat" onSubmit={handleSubmit}>
                         <input
                             type="text"
                             value={categoryName}
                             onChange={(e) => setCategoryName(e.target.value)}
                             placeholder="Enter category name"
                         />
-                        <button onClick={handleAddCategory}>Add Category</button>
-                    </div>
+                        <button type="submit">
+                            {isEditing ? "Update Category" : "Add Category"}
+                        </button>
+                        {isEditing && (
+                            <button 
+                                type="button" 
+                                onClick={() => {
+                                    setIsEditing(false);
+                                    setCategoryName("");
+                                    setEditingCategoryId(null);
+                                }}
+                                className="cancel-btn"
+                            >
+                                Cancel
+                            </button>
+                        )}
+                    </form>
                 </div>
 
                 <ul className="category-list">
