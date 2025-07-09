@@ -55,6 +55,7 @@ const AddEditProductPage = () => {
                         setCategoryId(productData.product.categoryId);
                         setName(productData.product.name);
                         //todo update date of change(s)
+                        //todo add validations on price, quantity, files, etc.
                     }else{
                         showMessage(productData.message);
                     }
@@ -158,7 +159,7 @@ const AddEditProductPage = () => {
                         <label>Product Image</label>
                         <input type="file" onChange={handleImageChange}/>
                         {imageUrl && (
-                            <img src={imageUrl} className="image-preview" alt="testingImage"/>
+                            <img src={imageUrl} className="image-preview" alt="Image-preview"/>
                         )}
                     </div>
 
