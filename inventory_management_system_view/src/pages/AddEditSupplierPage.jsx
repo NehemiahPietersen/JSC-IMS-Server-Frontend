@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import ApiService from "../service/ApiService";
 import { useNavigate, useParams } from "react-router-dom";
+import "../styles/AddEditProduct.css"
 
 const AddEditSupplierPage = () => {
     const { supplierId } = useParams("");
