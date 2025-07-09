@@ -9,6 +9,7 @@ import AddEditSupplierPage from "./pages/AddEditSupplierPage";
 import ProductPage from "./pages/ProductPage";
 import AddEditProductPage from "./pages/AddEditProductPage";
 import PurchasePage from "./pages/PurchasePage";
+import SellPage from "./pages/SellPage";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
 
         {/* ADMIN AND MANAGERS ROUTES */}
         <Route path="/purchase" element={<ProtectedRoute element={<PurchasePage/>}/>}/>
-        
+        <Route path="/sell" element={<ProtectedRoute element={<SellPage/>}/>}/>
+
       </Routes>
     </Router>
   );
