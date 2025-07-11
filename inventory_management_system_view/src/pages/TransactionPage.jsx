@@ -25,7 +25,7 @@ const TransactionPage = () => {
         }, 4000);
     };
 
-    //TODO add Client Table Row to know from whom and to who products where sold or bought -> Color code Transaction Statuses
+    //TODO add Client Table Row to know from whom and to who products where sold or bought -> Color code Transaction Statuses, add sort by
 
     useEffect(() => {
         const getTransactions = async() => {
@@ -54,6 +54,8 @@ const TransactionPage = () => {
 
     //handleSearch
     const handleSearch = () => {
+        // TODO fix transaction search - add client
+        console.log("Search hit");
         setCurrentPage = 1;
         setValueToSearch(filter);
     }
@@ -100,8 +102,7 @@ const TransactionPage = () => {
                                     <td>{transaction.totalProducts}</td>
                                     <td>{new Date(transaction.createdAt).toLocaleString()}</td>
 
-                                    <button 
-                                        className="transaction-button"
+                                    <button className="transaction-button"
                                         onClick={() => navigateToTransactionsDetailsPage(transaction.id)}
                                     >
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
