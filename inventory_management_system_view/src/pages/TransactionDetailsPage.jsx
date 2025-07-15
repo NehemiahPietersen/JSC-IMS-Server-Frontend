@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout"
 import ApiService from "../service/ApiService";
 import { useNavigate, useParams } from "react-router-dom";
-import PaginationComponent from "../components/PaginationComponent";
 import "../styles/Transaction.css";
 
 const TransactionDetailsPage = () => {
@@ -70,6 +69,50 @@ const TransactionDetailsPage = () => {
                             {transaction.updatedAt && (
                                 <p>Updated At: {new Date(transaction.updatedAt).toLocaleString()}</p>
                             )}
+                        </div>
+
+                        {/* Product information in the Transaction */}
+                        <div className="section-card">
+                            <h2>Product Information</h2>
+                            <p>Product Name: {transaction.products.name}</p>
+                            <p>SKU: {transaction.products.sku}</p>
+                            <p>Price: {transaction.products.price}</p>
+                            <p>Description: {transaction.products.description}</p>
+                            <p>Stock Quantity: {transaction.products.stockQuantity}</p>
+
+                            {/* TODO: Maybe Add Category to this screen? */}
+                        </div>
+
+                        {/* Supplier Information in the Transaction, if there is a supplier */}
+                        {transaction.supplier && (
+                            <div className="section-card">
+                                <h2>Supplier Information</h2>
+                                <p>Supplier Name: {transaction.supplier.name}</p>
+                                <p>Contact Number: {transaction.products.contactNumber}</p>
+                                <p>Email Address: {transaction.products.email}</p>
+                            </div>
+                        )}
+
+                        {/* User Information in the Transaction */}
+                        <div className="section-card">
+                            <h2>User Information</h2>
+                            <p>Name: {transaction.user.name}</p>
+                            <p>Contact Number: {transaction.user.contactNumber}</p>
+                            <p>Email Address: {transaction.user.email}</p>
+                            <p>Create Date: {new Date(transaction.user.createdAt).toLocaleString()}</p>
+                        </div>
+
+                        {/* call update Transaction Status */}
+                        <div class="section-card transaction-status-update">
+                            <label>Status:</label>
+                            <select value={status}
+                            onChange={(e) => setStatus(e.target.value)}>
+                                <option value="PENDING">Pending</option>
+                                <option value="PROCESSING">Processing</option>
+                                <option value="COMPLETED">Completed</option>
+                                <option value="CANCELLED">Cancelled</option>
+                            </select>
+                            <button onClick={() => handleTransactionStatusUpdate()}>Update Status</button>
                         </div>
                     </>
                 )}
