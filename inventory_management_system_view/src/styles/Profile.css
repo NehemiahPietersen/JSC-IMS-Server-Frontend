@@ -1,0 +1,281 @@
+/* Profile Page Styles */
+.profile-page {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+    max-width: calc(100% - 250px - 40px);
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    width: 100%;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.profile-card h1 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.profile-card h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    border-radius: 3px;
+}
+
+.profile-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.profile-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.profile-item:hover {
+    background-color: #f1f5f9;
+    transform: translateX(5px);
+}
+
+.profile-item label {
+    font-weight: 600;
+    color: #2c3e50;
+    min-width: 150px;
+    margin-right: 1rem;
+}
+
+.profile-item span {
+    color: #4a5568;
+    flex: 1;
+    word-break: break-word;
+}
+
+/* Role Badge */
+.profile-item:last-child span {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.role-ADMIN {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.role-USER {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-page {
+        padding: 1rem;
+    }
+    
+    .message {
+        max-width: calc(100% - 40px);
+        right: 10px;
+        top: 10px;
+    }
+    
+    .profile-card {
+        padding: 1.5rem;
+    }
+    
+    .profile-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .profile-item label {
+        min-width: 100%;
+    }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .profile-card {
+        background-color: #2d3748;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    
+    .profile-card h1 {
+        color: #f7fafc;
+    }
+    
+    .profile-item {
+        background-color: #1a202c;
+    }
+    
+    .profile-item:hover {
+        background-color: #2d3748;
+    }
+    
+    .profile-item label {
+        color: #e2e8f0;
+    }
+    
+    .profile-item span {
+        color: #cbd5e0;
+    }
+    
+    .role-ADMIN {
+        background-color: #1976d2;
+        color: #e3f2fd;
+    }
+    
+    .role-USER {
+        background-color: #2e7d32;
+        color: #e8f5e9;
+    }
+}
+
+/* Animation for profile items */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.profile-item {
+    animation: fadeInUp 0.4s ease-out;
+    animation-fill-mode: both;
+}
+
+.profile-item:nth-child(1) { animation-delay: 0.1s; }
+.profile-item:nth-child(2) { animation-delay: 0.2s; }
+.profile-item:nth-child(3) { animation-delay: 0.3s; }
+.profile-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Enhanced Role Badge Styles */
+.profile-item:last-child span {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 1rem;
+    border-radius: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add icon before role text */
+.profile-item:last-child span::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background: currentColor;
+    opacity: 0.8;
+}
+
+/* Pulse animation for ADMIN role */
+.role-ADMIN {
+    background: linear-gradient(135deg, #1976d2, #64b5f6);
+    color: white;
+    padding-right: 1.5rem;
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+.role-ADMIN::after {
+    content: "⭐";
+    position: absolute;
+    right: 0.5rem;
+    font-size: 0.9em;
+}
+
+.role-USER {
+    background: linear-gradient(135deg, #2e7d32, #66bb6a);
+    color: white;
+}
+
+/* Special badge for other potential roles */
+.role-MANAGER {
+    background: linear-gradient(135deg, #f57f17, #ffb74d);
+    color: white;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Hover effects */
+.profile-item:last-child span:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .role-ADMIN {
+        background: linear-gradient(135deg, #0d47a1, #1976d2);
+    }
+    
+    .role-USER {
+        background: linear-gradient(135deg, #1b5e20, #2e7d32);
+    }
+    
+    .role-MANAGER {
+        background: linear-gradient(135deg, #e65100, #f57f17);
+    }
+}

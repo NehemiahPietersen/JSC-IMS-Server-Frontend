@@ -1,0 +1,215 @@
+/* Transaction Details Page Styles */
+.transaction-details-page {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+    max-width: calc(100% - 250px - 40px);
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.section-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: fit-content;
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.section-card h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.5rem;
+}
+
+.section-card p {
+    margin: 0.75rem 0;
+    color: #555;
+    line-height: 1.5;
+    display: flex;
+}
+
+.section-card p::before {
+    content: "•";
+    color: #3498db;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Status Update Section */
+.transaction-status-update {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    grid-column: 1 / -1;
+    background-color: #f8fafc;
+}
+
+.transaction-status-update label {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.transaction-status-update select {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.transaction-status-update select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
+}
+
+.transaction-status-update button {
+    padding: 0.75rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.transaction-status-update button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.status-PENDING {
+    background-color: #fff8e1;
+    color: #f57f17;
+}
+
+.status-PROCESSING {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.status-COMPLETED {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-CANCELLED {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .transaction-details-page {
+        padding: 1rem;
+        grid-template-columns: 1fr;
+    }
+    
+    .message {
+        max-width: calc(100% - 40px);
+        right: 10px;
+        top: 10px;
+    }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .transaction-details-page {
+        background-color: #1a202c;
+    }
+    
+    .section-card {
+        background-color: #2d3748;
+        color: #f7fafc;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .section-card h2 {
+        color: #f7fafc;
+        border-bottom-color: #4a5568;
+    }
+    
+    .section-card p {
+        color: #e2e8f0;
+    }
+    
+    .section-card p::before {
+        color: #63b3ed;
+    }
+    
+    .transaction-status-update {
+        background-color: #2d3748;
+    }
+    
+    .transaction-status-update select {
+        background-color: #4a5568;
+        color: white;
+        border-color: #4a5568;
+    }
+    
+    .status-PENDING {
+        background-color: #f57f17;
+        color: #fff8e1;
+    }
+    
+    .status-PROCESSING {
+        background-color: #1976d2;
+        color: #e3f2fd;
+    }
+    
+    .status-COMPLETED {
+        background-color: #2e7d32;
+        color: #e8f5e9;
+    }
+    
+    .status-CANCELLED {
+        background-color: #c62828;
+        color: #ffebee;
+    }
+}

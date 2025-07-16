@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout"
 import ApiService from "../service/ApiService";
 import { useNavigate, useParams } from "react-router-dom";
-import "../styles/Transaction.css";
+import "../styles/TransactionDetails.css";
 
 const TransactionDetailsPage = () => {
     const { transactionId } = useParams();
@@ -59,7 +59,9 @@ const TransactionDetailsPage = () => {
                         <div className="section-card">
                             <h2>Transaction Information</h2>
                             <p>Type: {transaction.transactionType}</p>
-                            <p>Status: {transaction.transactionStatus}</p>
+                            <p>Status: <span className={`status-badge status-${transaction.transactionStatus}`}>
+                                {transaction.transactionStatus}
+                            </span></p>
                             <p>Description: {transaction.description}</p>
                             <p>Note: {transaction.note}</p>
                             <p>Total Products: {transaction.totalProducts}</p>
