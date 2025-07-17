@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import ApiService from "../service/ApiService";
 import { useNavigate } from "react-router-dom";
+import "../styles/Supplier.css"
 
 const SupplierPage = () => {
     const [suppliers, setSuppliers] = useState([]);

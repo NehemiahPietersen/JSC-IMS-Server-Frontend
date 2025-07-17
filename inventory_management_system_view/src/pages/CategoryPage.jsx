@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Layout from "../components/Layout";
 import ApiService from "../service/ApiService";
+import "../styles/Category.css"
 
 const CategoryPage = () => {
     const [categories, setCategories] = useState([]);

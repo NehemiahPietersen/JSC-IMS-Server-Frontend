@@ -21,9 +21,10 @@ function App() {
       <Routes>
         <Route path="/register" element={<RegisterPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
+        <Route path="*" element={<LoginPage/>}/>
 
         {/* ADMIN ROUTES */}
-        <Route path="/dashboard" element={<AdminRoute element={<DashboardPage/>}/>}/>
+        {/* <Route path="/dashboard" element={<AdminRoute element={<DashboardPage/>}/>}/> */}
         <Route path="/category" element={<AdminRoute element={<CategoryPage/>}/>}/>
         
         <Route path="/supplier" element={<AdminRoute element={<SupplierPage/>}/>}/>
@@ -40,6 +41,7 @@ function App() {
         <Route path="/transactions" element={<ProtectedRoute element={<TransactionPage/>}/>}/>
         <Route path="/transactions/:transactionId" element={<ProtectedRoute element={<TransactionDetailsPage/>}/>}/>
         <Route path="/profile" element={<ProtectedRoute element={<ProfilePage/>}/>}/>
+        <Route path="/dashboard" element={<ProtectedRoute element={<DashboardPage/>}/>}/>
 
       </Routes>
     </Router>
