@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import ApiService from "../service/ApiService";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PaginationComponent from "../components/PaginationComponent";
+import "../styles/Product.css"
 
 const ProductPage = () => {
     const [products, setProducts] = useState([]);
     const [ message, setMessage ] = useState('');
-    const [ isEditing, setIsEditing ] = useState(false);
 
     const navigate = useNavigate();
 
@@ -15,6 +15,7 @@ const ProductPage = () => {
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ totalPages, setTotalPages ] = useState(0);
     const itemsPerPage = 12;
+    // todo give user option to say view how many items per page they want
 
     const showMessage =(msg) => {
         setMessage(msg);
@@ -88,7 +89,9 @@ const ProductPage = () => {
                                 <h3 className="name">{product.name}</h3>
                                 <p className="sku">SKU: {product.sku}</p>
                                 <p className="price">Price: ${product.price}</p>
-                                <p className="quantity">Quantity: {product.stockQuantity}</p>
+                                <p className={`quantity ${product.stockQuantity === 0 ? 'out-of-stock' : product.stockQuantity < 5 ? 'low-stock' : 'in-stock'}`}>
+                                    Quantity: {product.stockQuantity}
+                                </p>
                             </div>
 
                             <div className="product-actions">
